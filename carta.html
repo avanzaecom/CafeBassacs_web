@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafè Bassacs</title>
+    <link rel="icon" type="image/png" href="logo_bassacs.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav">
+            <a href="index.html" class="logo">
+                <img src="logo_bassacs.png" alt="Cafè Bassacs Logo">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Inici</a>
+                <a href="carta.html" class="active" style="color: var(--accent-color);">La Carta</a>
+                <a href="index.html#contacte">Contacte</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Header -->
+    <div class="menu-header">
+        <div class="container">
+            <h1>La Nostra Carta</h1>
+        </div>
+    </div>
+
+    <!-- Category Nav -->
+    <nav class="menu-categories-nav">
+        <!-- Categories will be populated by JS -->
+    </nav>
+
+    <!-- Menu Content -->
+    <div class="container" id="menu-container">
+        <!-- Content injected by JS -->
+        <div style="text-align: center; padding: 50px;">Carregant carta...</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cafè Bassacs. Fet per <a href="https://avanzaecom.es" target="_blank"
+                    style="text-decoration: none; color: inherit; transition: text-decoration 0.3s;"
+                    onmouseover="this.style.textDecoration='underline'"
+                    onmouseout="this.style.textDecoration='none'">AvanzaEcom</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating Actions -->
+
+
+    <!-- Scripts -->
+    <script src="menu.js"></script>
+    <script>
+        // Smooth scroll for menu nav
+        document.querySelectorAll('.cat-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
