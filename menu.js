@@ -27,7 +27,7 @@ function parseCSV(csvText) {
     const lines = csvText.split('\n');
     const result = [];
     // Assuming First Row is Header. We skip it, or valid if strict format.
-    // Order: Categoria, Nom, Preu, Descripcio
+    // Order: Categoria, Nom, Preu, Descripción
 
     for (let i = 1; i < lines.length; i++) {
         if (!lines[i].trim()) continue;
@@ -109,9 +109,20 @@ async function renderPublicMenu() {
     }
 
     // Build Sections
+    // Configuration for Category Subtitles
+    const CATEGORY_CONFIG = {
+        'Vins': 'Copa / Ampolla',
+        'Licors': 'Copa / Raig / Tub Gel / Xarrup',
+        'Frankfurt': 'Pa de Frankfurt / Pa de barra',
+        'Entrepans Calents': 'Pa de Frankfurt / Pa de barra',
+        'Entrepans Freds': 'Pa de Frankfurt / Pa de barra',
+        'Hamburgueses': 'Pa Rodó'
+    };
+
     categories.forEach(cat => {
         const safeId = cat.toLowerCase().replace(/[^a-z0-9]/g, '_');
         const items = groupedItems[cat];
+        const subtitle = CATEGORY_CONFIG[cat];
 
         const section = document.createElement('section');
         section.id = safeId;
@@ -119,20 +130,37 @@ async function renderPublicMenu() {
 
         section.innerHTML = `
             <h2 class="category-title">${cat}</h2>
-            <div class="menu-items-grid">
-                ${items.map(item => `
-                    <div class="menu-item">
-                        <div class="item-content">
-                            <div class="item-header">
-                                <span class="item-title">${item.name}</span>
-                                <span class="item-price">${item.price}</span>
-                            </div>
-                            <p class="item-desc">${item.description}</p>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
+            ${subtitle ? `<p class="category-subtitle">${subtitle}</p>` : ''}
         `;
+
+        if (cat.toLowerCase() === 'afegeix' || cat.toLowerCase() === 'extras') {
+            section.innerHTML += `
+                <div class="extras-box">
+                    ${items.map(item => `
+                        <div class="extra-item">
+                            <span>${item.name}</span>
+                            <span>${item.price}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            section.innerHTML += `
+                <div class="menu-items-grid">
+                    ${items.map(item => `
+                        <div class="menu-item">
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <span class="item-title">${item.name}</span>
+                                    <span class="item-price">${item.price}</span>
+                                </div>
+                                ${item.description ? `<p class="item-desc">${item.description}</p>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
         container.appendChild(section);
     });
 

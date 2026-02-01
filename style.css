@@ -262,10 +262,54 @@ header {
     /* Offset for sticky nav */
 }
 
+.category-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-top: -30px;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
 .menu-items-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
+}
+
+/* Extras Special Styling */
+.extras-box {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    /* Optional: limit width for better readability */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Internal grid for items */
+    gap: 15px 30px;
+}
+
+.extra-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle separator */
+    padding-bottom: 5px;
+}
+
+.extra-item span:first-child {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.extra-item span:last-child {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 .menu-item {
@@ -320,6 +364,7 @@ header {
 .item-desc {
     color: #ddd;
     font-size: 0.9rem;
+    margin-top: 5px;
 }
 
 /* Map */
